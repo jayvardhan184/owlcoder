@@ -1,0 +1,31 @@
+Bitwise XOR of Numbers Range
+Program Description :
+Imagine you are working on a futuristic energy optimization project in a smart city. In this city, every building is equipped with advanced energy monitoring systems. These systems collect data about energy consumption from various devices and appliances within each building. As part of your project, you need to perform bitwise operations on energy consumption data to optimize energy usage efficiently.
+
+Given an integers N that represent the range [1, N], 
+
+Input Format :
+A single line contains an integer N. 
+
+Output Format :
+Display XOR result from 1 to N.
+=================================================================================
+CODE
+================================================================================
+
+
+
+
+
+
+
+import java.util.*;
+public class demo{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int ans=1;
+        for(int i=2;i<=n;i++)  ans^=i;
+        System.out.print(ans);
+    }
+}
