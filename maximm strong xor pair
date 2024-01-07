@@ -1,0 +1,45 @@
+You are given a 0-indexed integer array nums. A pair of integers x and y is called a strong pair if it satisfies the condition:
+
+|x - y| <= min(x, y)
+
+You need to select two integers from nums such that they form a strong pair and their bitwise XOR is the maximum among all strong pairs in the array.
+
+Print the maximum XOR value out of all possible strong pairs in the array nums.
+
+Note that you can pick the same integer twice to form a pair.
+
+Input Format :
+First Line Consists of Array Length.
+
+SecondLine Consists of Array Elements  
+
+Output Format :
+XOR value out of all possible strong pairs in the array nums
+
+===============================================================================
+c0de
+=============================================================================
+import java.util.*;
+public class Solution
+{
+    public static void main(String args[]){
+        Scanner sc =new Scanner(System.in);
+        int n=sc.nextInt();
+        int a[] = new int[n];
+        for(int i=0;i<n;i++) a[i]=sc.nextInt();
+        System.out.print(max_xor(a,n));
+    }
+    public static int max_xor(int a[], int n)
+    {
+        //code here
+        int max=-9999;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(Math.abs(a[i]-a[j])<=Math.min(a[i],a[j]))
+                if((a[i]^a[j])>max) max=a[i]^a[j];
+            }
+        }
+        if(max<0) return 0;
+        return max;
+    }
+}
