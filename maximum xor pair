@@ -1,0 +1,14 @@
+class Solution
+{
+    public static int max_xor(int a[], int n)
+    {
+        //code here
+        int max=-9999;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if((a[i]^a[j])>max) max=a[i]^a[j];
+            }
+        }
+        return max;
+    }
+}
