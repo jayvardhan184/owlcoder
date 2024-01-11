@@ -1,0 +1,41 @@
+Given the root of a binary tree, find the maximum value v for which there exist different nodes a and b where v = |a.val - b.val| and a is an ancestor of b.
+
+A node a is an ancestor of b if either: any child of a is equal to b or any child of a is an ancestor of b.
+=========================================================================================
+code
+======================================================================================
+class Solution {
+    public int maxAncestorDiff(TreeNode root) {
+        Map<Integer,ArrayList<Integer> > m = new HashMap<Integer,ArrayList<Integer>>();
+        ArrayList<Integer> v = new ArrayList<Integer>();
+        m.put(root.val,new ArrayList<Integer>());
+        int max=-99999;
+        p(root,m,v);
+        for(int i=0;i<v.size();i++){
+            ArrayList<Integer> r= new ArrayList<Integer>();
+            r.addAll(m.get(v.get(i)));
+            int p=v.get(i);
+            for(int j=0;j<r.size();j++){
+                int h=p-r.get(j);
+                if(h<0) h*=-1;
+                if(h>max) max=h;
+            }
+            
+        }
+        //System.out.println(m);
+        return max;
+    }
+    public void p(TreeNode root,Map<Integer,ArrayList<Integer> > m,ArrayList<Integer> v){
+        if(root==null) return;
+        ArrayList<Integer> li = new ArrayList<Integer>();
+        li.add(root.val);
+        v.add(root.val);
+        li.addAll(m.get(root.val));
+        if(root.right!=null) m.put(root.right.val,li);
+        if(root.left!=null) m.put(root.left.val,li);
+        p(root.left,m,v);
+        p(root.right,m,v);
+        return;
+        
+    }
+}
