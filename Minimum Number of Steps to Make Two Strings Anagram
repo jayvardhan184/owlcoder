@@ -1,0 +1,37 @@
+You are given two strings of the same length s and t. In one step you can choose any character of t and replace it with another character.
+
+Return the minimum number of steps to make t an anagram of s.
+
+An Anagram of a string is a string that contains the same characters with a different (or the same) ordering.
+=============================================================================================================
+code
+===========================================================================================================
+class Solution {
+    public int minSteps(String s, String t) 
+    {   
+        int n=s.length();
+        Map<Character,Integer> a = new HashMap<>();
+        Map<Character,Integer> b = new HashMap<>();
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(a.containsKey(s.charAt(i))) a.put(s.charAt(i),a.get(s.charAt(i))+1);
+            else a.put(s.charAt(i),1);
+            if(b.containsKey(t.charAt(i))) b.put(t.charAt(i),b.get(t.charAt(i))+1);
+            else b.put(t.charAt(i),1);
+
+        }
+        ArrayList<Character> li = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            int ac=a.get(s.charAt(i));
+            int bc=0;
+            if(b.containsKey(s.charAt(i))) bc=b.get(s.charAt(i));
+            if(bc==0) ans+=1;
+            else if(bc<ac && !li.contains(s.charAt(i))) {
+                li.add(s.charAt(i));
+            ans+=(ac-bc);
+            }
+        }
+        return ans;
+
+    }   
+}
