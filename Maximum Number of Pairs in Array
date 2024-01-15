@@ -1,0 +1,32 @@
+You are given a 0-indexed integer array nums. In one operation, you may do the following:
+
+Choose two integers in nums that are equal.
+Remove both integers from nums, forming a pair.
+The operation is done on nums as many times as possible.
+
+Return a 0-indexed integer array answer of size 2 where answer[0] is the number of pairs that are formed and answer[1] is the number of leftover integers in nums after doing the operation as many times as possible.
+======================================================
+code
+=======================================================
+class Solution(object):
+    def numberOfPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        ans=[]
+        left=0
+        p=0
+        s=set(nums)
+        for i in s:
+            if(nums.count(i)>1 and nums.count(i)%2!=0):
+                left+=1;
+                p+=(nums.count(i)-1)/2
+            elif(nums.count(i)%2!=0):
+                left+=1;
+            else:
+                 p+=nums.count(i)/2
+        ans.append(p)
+        ans.append(left)
+        return ans
+        
