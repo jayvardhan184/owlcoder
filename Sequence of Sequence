@@ -1,0 +1,25 @@
+Given two integers m and n, try making a special sequence of numbers seq of length n such that
+
+seqi+1 >= 2*seqi 
+seqi > 0
+seqi <= m
+Your task is to determine total number of such special sequences possible.
+================================================================================================
+code
+===================================================================================================
+class Solution{
+    static int numberSequence(int m, int n)
+    {
+        // code here
+        int ans=0;
+        ans=fun(1,1,m,n,0);
+        return ans;
+    }
+    static int fun(int ci,int cs,int m,int s,int ans){
+        if(cs>s || ci>m) return ans;
+        if(cs==s && ci<=m) ans++;
+        ans=fun(ci*2,cs+1,m,s,ans);
+        ans= fun(ci+1,cs,m,s,ans);
+        return ans;
+    }
+}
